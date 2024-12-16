@@ -1,101 +1,165 @@
-import Image from "next/image";
+"use client";
+
+import "aos/dist/aos.css";
+import AOS from "aos";
+import { useEffect } from "react";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-8 row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <h1>Page is in under nmentainence....</h1>
-        <ol className="list-inside list-decimal text-sm text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-semibold">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li>Save and see your changes instantly.</li>
-        </ol>
+  useEffect(() => {
+    AOS.init({
+      duration: 1000,
+      easing: "ease-in-out",
+      once: true,
+    });
+  }, []);
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
+  return (
+    <div className="grid grid-rows-[auto_1fr_auto] min-h-screen font-sans">
+      {/* Header */}
+      <header className="bg-gray-900 text-white py-4 px-8 flex justify-between items-center animate__animated animate__fadeInDown">
+        <h1 className="text-2xl font-bold">Garment Export Co.</h1>
+        <nav className="flex gap-4">
+          <a href="#about" className="hover:underline">
+            About
           </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:min-w-44"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
+          <a href="#products" className="hover:underline">
+            Products
           </a>
-        </div>
+          <a href="#contact" className="hover:underline">
+            Contact
+          </a>
+        </nav>
+      </header>
+
+      {/* Main Content */}
+      <main className="p-8">
+        {/* Hero Section */}
+        <section
+          className="text-center py-16 bg-cover bg-center"
+          style={{
+            backgroundImage:
+              "url('https://img.freepik.com/free-photo/industrial-port-container-yard_1112-1202.jpg?t=st=1734379511~exp=1734383111~hmac=8e370368fd6dbc7fdcb5e64011fcc5ffae67532f01efc4b77d0f19f15bcc20ab&w=740')",
+          }}
+          data-aos="zoom-in"
+        >
+          <h2 className="text-4xl font-bold text-white mb-4">
+            High-Quality Garments for Export
+          </h2>
+          <p className="text-lg text-white mb-6">
+            Delivering excellence in every stitch.
+          </p>
+          <a
+            href="#products"
+            className="bg-blue-600 text-white px-6 py-3 rounded-full hover:bg-blue-700"
+          >
+            Explore Our Products
+          </a>
+        </section>
+
+        {/* About Us */}
+        <section id="about" className="py-16" data-aos="fade-left">
+          <h2 className="text-3xl font-bold mb-4">About Us</h2>
+          <p className="text-lg text-gray-700">
+            At Garment Export Co., we specialize in manufacturing and exporting
+            premium-quality garments to clients worldwide. With decades of
+            experience, we pride ourselves on our craftsmanship, innovation, and
+            sustainability.
+          </p>
+        </section>
+
+        {/* Product Categories */}
+        <section
+          id="products"
+          className="py-16 bg-gray-100"
+          data-aos="fade-right"
+        >
+          <h2 className="text-3xl font-bold mb-8 text-center">Our Products</h2>
+          <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-3">
+            {/* Product Category 1 */}
+            <div className="text-center" data-aos="fade-up">
+              <img
+                src="https://img.freepik.com/free-photo/handsome-confident-young-curly-haired-man-drinking-coffee-standing-infront-isolated-white-wall_231208-1086.jpg?t=st=1734379675~exp=1734383275~hmac=1ea04d7fe4674998c20c90650b766833c044e3482d36eafd15a0c72ab50c345e&w=360"
+                alt="Casual Wear"
+                width={300}
+                height={300}
+                className="mx-auto rounded-lg"
+              />
+              <h3 className="text-xl font-semibold mt-4">Casual Wear</h3>
+            </div>
+
+            {/* Product Category 2 */}
+            <div
+              className="text-center"
+              data-aos="fade-up"
+              data-aos-delay="200"
+            >
+              <img
+                src="https://img.freepik.com/free-photo/full-length-portrait-handsome-successful-businessman_171337-18653.jpg?t=st=1734379721~exp=1734383321~hmac=2cde896d06925ca61a739242c925e778d7524e67280adf5a0f62b4ad71370f7c&w=360"
+                alt="Formal Wear"
+                width={300}
+                height={300}
+                className="mx-auto rounded-lg"
+              />
+              <h3 className="text-xl font-semibold mt-4">Formal Wear</h3>
+            </div>
+
+            {/* Product Category 3 */}
+            <div
+              className="text-center"
+              data-aos="fade-up"
+              data-aos-delay="400"
+            >
+              <img
+                src="https://img.freepik.com/premium-photo/handsome-athletic-man-walking-street_652076-603.jpg?w=360"
+                alt="Sports Wear"
+                width={300}
+                height={300}
+                className="mx-auto rounded-lg"
+              />
+              <h3 className="text-xl font-semibold mt-4">Sports Wear</h3>
+            </div>
+          </div>
+        </section>
+
+        {/* Why Choose Us */}
+        <section className="py-16" data-aos="fade-up">
+          <h2 className="text-3xl font-bold mb-8 text-center">
+            Why Choose Us?
+          </h2>
+          <ul className="list-disc list-inside space-y-4 text-gray-700">
+            <li>Experienced in exporting to over 50 countries.</li>
+            <li>Committed to sustainable and ethical practices.</li>
+            <li>Customization options to suit your needs.</li>
+            <li>Stringent quality control measures.</li>
+          </ul>
+        </section>
+
+        {/* Contact Section */}
+        <section
+          id="contact"
+          className="py-16 bg-gray-900 text-white text-center"
+          data-aos="fade-in"
+        >
+          <h2 className="text-3xl font-bold mb-4">Get in Touch</h2>
+          <p className="text-lg mb-6">
+            We'd love to hear from you. Reach out to us for inquiries and
+            collaborations.
+          </p>
+          <a
+            href="mailto:info@garmentexport.com"
+            className="bg-blue-600 text-white px-6 py-3 rounded-full hover:bg-blue-700"
+          >
+            Contact Us
+          </a>
+        </section>
       </main>
-      <footer className="row-start-3 flex gap-6 flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
+
+      {/* Footer */}
+      <footer className="bg-gray-800 text-white py-4 text-center">
+        <p>
+          &copy; {new Date().getFullYear()} Garment Export Co. All rights
+          reserved.
+        </p>
       </footer>
     </div>
   );
