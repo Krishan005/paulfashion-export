@@ -17,7 +17,7 @@ export default function Home() {
     <div className="grid grid-rows-[auto_1fr_auto] min-h-screen font-sans">
       {/* Header */}
       <header className="bg-gray-900 text-white py-4 px-8 flex justify-between items-center animate__animated animate__fadeInDown">
-        <h1 className="text-2xl font-bold">Garment Export Co.</h1>
+        <h1 className="text-2xl font-bold">Paulfashion Export Co.</h1>
         <nav className="flex gap-4">
           <a href="#about" className="hover:underline">
             About
