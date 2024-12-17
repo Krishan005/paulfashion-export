@@ -3,6 +3,8 @@
 import "aos/dist/aos.css";
 import AOS from "aos";
 import { useEffect } from "react";
+import Navbar from "./component/navbar";
+import PageHeaderSection1 from "./component/pageheadersection1";
 
 export default function Home() {
   useEffect(() => {
@@ -16,45 +18,12 @@ export default function Home() {
   return (
     <div className="grid grid-rows-[auto_1fr_auto] min-h-screen font-sans">
       {/* Header */}
-      <header className="bg-gray-900 text-white py-4 px-8 flex justify-between items-center animate__animated animate__fadeInDown">
-        <h1 className="text-2xl font-bold">Paulfashion Export Co.</h1>
-        <nav className="flex gap-4">
-          <a href="#about" className="hover:underline">
-            About
-          </a>
-          <a href="#products" className="hover:underline">
-            Products
-          </a>
-          <a href="#contact" className="hover:underline">
-            Contact
-          </a>
-        </nav>
-      </header>
 
+      <Navbar />
       {/* Main Content */}
-      <main className="p-8">
+      <main>
         {/* Hero Section */}
-        <section
-          className="text-center py-16 bg-cover bg-center"
-          style={{
-            backgroundImage:
-              "url('https://img.freepik.com/free-photo/industrial-port-container-yard_1112-1202.jpg?t=st=1734379511~exp=1734383111~hmac=8e370368fd6dbc7fdcb5e64011fcc5ffae67532f01efc4b77d0f19f15bcc20ab&w=740')",
-          }}
-          data-aos="zoom-in"
-        >
-          <h2 className="text-4xl font-bold text-white mb-4">
-            High-Quality Garments for Export
-          </h2>
-          <p className="text-lg text-white mb-6">
-            Delivering excellence in every stitch.
-          </p>
-          <a
-            href="#products"
-            className="bg-blue-600 text-white px-6 py-3 rounded-full hover:bg-blue-700"
-          >
-            Explore Our Products
-          </a>
-        </section>
+        <PageHeaderSection1 />
 
         {/* About Us */}
         <section id="about" className="py-16" data-aos="fade-left">
