@@ -5,6 +5,7 @@ import AOS from "aos";
 import { useEffect } from "react";
 import Navbar from "./component/navbar";
 import PageHeaderSection1 from "./component/pageheadersection1";
+import AboutUsPage from "./component/pageaboutus";
 
 export default function Home() {
   useEffect(() => {
@@ -26,15 +27,7 @@ export default function Home() {
         <PageHeaderSection1 />
 
         {/* About Us */}
-        <section id="about" className="py-16" data-aos="fade-left">
-          <h2 className="text-3xl font-bold mb-4">About Us</h2>
-          <p className="text-lg text-gray-700">
-            At Garment Export Co., we specialize in manufacturing and exporting
-            premium-quality garments to clients worldwide. With decades of
-            experience, we pride ourselves on our craftsmanship, innovation, and
-            sustainability.
-          </p>
-        </section>
+        <AboutUsPage />
 
         {/* Product Categories */}
         <section

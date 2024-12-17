@@ -9,8 +9,11 @@ const PageHeaderSection1 = () => {
     AOS.init({
       duration: 1000, // Animation duration in milliseconds
       easing: "ease-in-out", // Animation easing
-      once: true, // Whether animation should happen only once
+      once: false, // Whether animation should happen only once
+      mirror: true,
     });
+
+    AOS.refresh();
   }, []);
 
   return (
@@ -30,7 +33,7 @@ const PageHeaderSection1 = () => {
           Welcome to Paulfashion Export Co.
         </h1>
         <p
-          className="text-sm[10] md:text-xl mt-4 max-w-2xl"
+          className="text-sm md:text-sm mt-4 max-w-2xl "
           data-aos="fade-up"
           data-aos-delay="200"
         >
