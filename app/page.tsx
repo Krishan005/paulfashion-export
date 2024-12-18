@@ -7,6 +7,7 @@ import Navbar from "./component/navbar";
 import PageHeaderSection1 from "./component/pageheadersection1";
 import AboutUsPage from "./component/pageaboutus";
 import PageExport from "./component/pageexport";
+import PageCountDown from "./component/pagecountdown";
 
 export default function Home() {
   useEffect(() => {
@@ -92,17 +93,8 @@ export default function Home() {
         <PageExport />
 
         {/* Why Choose Us */}
-        <section className="py-16" data-aos="fade-up">
-          <h2 className="text-3xl font-bold mb-8 text-center">
-            Why Choose Us?
-          </h2>
-          <ul className="list-disc list-inside space-y-4 text-gray-700">
-            <li>Experienced in exporting to over 50 countries.</li>
-            <li>Committed to sustainable and ethical practices.</li>
-            <li>Customization options to suit your needs.</li>
-            <li>Stringent quality control measures.</li>
-          </ul>
-        </section>
+
+        <PageCountDown />
 
         {/* Contact Section */}
         <section
