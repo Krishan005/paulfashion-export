@@ -160,6 +160,7 @@ const PageExport = () => {
                 value-suffix="people"
                 size="lg"
                 data={data}
+                frame={true}
               />
             </div>
           </div>

@@ -45,8 +45,9 @@ export default function Home() {
                 alt="Casual Wear"
                 width={300}
                 height={300}
-                className="mx-auto rounded-lg"
+                className="mx-auto rounded-lg border-4 border-orange-500 rounded-md p-2"
               />
+
               <h3 className="text-xl font-semibold mt-4">Casual Wear</h3>
             </div>
 
@@ -61,8 +62,9 @@ export default function Home() {
                 alt="Formal Wear"
                 width={300}
                 height={300}
-                className="mx-auto rounded-lg"
+                className="mx-auto rounded-lg border-4 border-orange-500 rounded-md p-2"
               />
+
               <h3 className="text-xl font-semibold mt-4">Formal Wear</h3>
             </div>
 
@@ -77,8 +79,9 @@ export default function Home() {
                 alt="Sports Wear"
                 width={300}
                 height={300}
-                className="mx-auto rounded-lg"
+                className="mx-auto rounded-lg border-4 border-orange-500 rounded-md p-2"
               />
+
               <h3 className="text-xl font-semibold mt-4">Sports Wear</h3>
             </div>
           </div>
