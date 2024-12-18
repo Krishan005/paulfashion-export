@@ -1,3 +1,10 @@
 .banner_content{
     font-size:small !important
 }
+
+.custom-worldmap-background {
+    background-color: #000000;
+    /* Light cyan background */
+    padding: 20px;
+    border-radius: 8px;
+}

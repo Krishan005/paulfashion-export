@@ -6,6 +6,7 @@ import { useEffect } from "react";
 import Navbar from "./component/navbar";
 import PageHeaderSection1 from "./component/pageheadersection1";
 import AboutUsPage from "./component/pageaboutus";
+import PageExport from "./component/pageexport";
 
 export default function Home() {
   useEffect(() => {
@@ -82,6 +83,10 @@ export default function Home() {
             </div>
           </div>
         </section>
+
+        {/* Export */}
+
+        <PageExport />
 
         {/* Why Choose Us */}
         <section className="py-16" data-aos="fade-up">

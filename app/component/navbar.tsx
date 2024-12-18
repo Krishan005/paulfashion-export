@@ -1,12 +1,14 @@
 "use client";
 
 import React, { useState, useEffect } from "react";
+import { FaBars, FaTimes } from "react-icons/fa";
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
+  const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   useEffect(() => {
-    const handleScroll: any = () => {
+    const handleScroll = () => {
       setIsScrolled(window.scrollY > 70);
     };
 
@@ -23,15 +25,40 @@ const Navbar = () => {
       }`}
     >
       <h1 className="text-2xl font-bold">Paulfashion Export Co.</h1>
-      <span>Page is in maintenance...</span>
-      <nav className="flex gap-4">
-        <a href="#about" className="hover:underline">
+      <span>Page is in mentainence...</span>
+      <button
+        className="sm:hidden text-white text-2xl"
+        onClick={() => setIsMenuOpen(!isMenuOpen)}
+        aria-label="Toggle menu"
+      >
+        {isMenuOpen ? <FaTimes /> : <FaBars />}
+      </button>
+      <nav
+        className={`${
+          isMenuOpen
+            ? "flex flex-col bg-gray-900 sm:bg-transparent text-center"
+            : "hidden"
+        } sm:flex sm:flex-row sm:gap-4 gap-2 absolute sm:static top-16 left-0 w-full sm:w-auto py-4 sm:py-0`}
+      >
+        <a
+          href="#about"
+          className="hover:underline text-sm md:text-base py-2 sm:py-0"
+          onClick={() => setIsMenuOpen(false)}
+        >
           About
         </a>
-        <a href="#products" className="hover:underline">
+        <a
+          href="#products"
+          className="hover:underline text-sm md:text-base py-2 sm:py-0"
+          onClick={() => setIsMenuOpen(false)}
+        >
           Products
         </a>
-        <a href="#contact" className="hover:underline">
+        <a
+          href="#contact"
+          className="hover:underline text-sm md:text-base py-2 sm:py-0"
+          onClick={() => setIsMenuOpen(false)}
+        >
           Contact
         </a>
       </nav>
