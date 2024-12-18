@@ -17,7 +17,10 @@ const AboutUsPage = () => {
   }, []);
 
   return (
-    <section className="flex flex-col md:flex-row items-center justify-between bg-white p-8">
+    <section
+      className="flex flex-col md:flex-row items-center justify-between bg-white p-8"
+      id="about"
+    >
       {/* Left: Image Section */}
       <div
         className="w-full md:w-1/2 flex justify-center"

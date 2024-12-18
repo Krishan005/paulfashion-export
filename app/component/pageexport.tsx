@@ -59,6 +59,7 @@ const data: any = [
   { country: "cm", value: 26545863 }, // Cameroon
   { country: "mg", value: 27691019 }, // Madagascar
   { country: "ci", value: 26378274 }, // Ivory Coast
+
   // Add other countries if necessary
 ];
 
