@@ -7,10 +7,7 @@ import "aos/dist/aos.css";
 const AboutUsPage = () => {
   useEffect(() => {
     AOS.init({
-      duration: 1000, // Animation duration in milliseconds
-      easing: "ease-in-out", // Animation easing
-      once: false, // Whether animation should happen only once
-      mirror: true,
+      duration: 3000, // Animation duration in milliseconds
     });
 
     AOS.refresh();
@@ -51,14 +48,19 @@ const AboutUsPage = () => {
           expert in the field of trade and marketing of garments product and
           clothing of men, women, and children and accessories.
         </p>
-        <button className="bg-orange-600 text-white py-2 px-4 rounded hover:bg-orange-700">
+        <button
+          className="bg-orange-600 text-white py-2 px-4 rounded hover:bg-orange-700"
+          onClick={() => {
+            window.location.href = "/about";
+          }}
+        >
           Read More
         </button>
 
         <div className="mt-6 text-gray-700">
           Call to ask any question:{" "}
           <span className="text-orange-600 font-semibold">
-            +91-33-22811396/97
+            <a href="tel:7044221504">+91-7044221504</a>
           </span>
         </div>
       </div>

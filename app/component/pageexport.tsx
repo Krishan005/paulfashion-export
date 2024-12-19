@@ -66,10 +66,7 @@ const data: any = [
 const PageExport = () => {
   useEffect(() => {
     AOS.init({
-      duration: 1000, // Animation duration in milliseconds
-      easing: "ease-in-out", // Animation easing
-      once: false, // Whether animation should happen only once
-      mirror: true,
+      duration: 3000, // Animation duration in milliseconds
     });
 
     AOS.refresh();
@@ -97,25 +94,28 @@ const PageExport = () => {
           <div data-aos="fade-up" data-aos-delay="200">
             <h4 className="text-xl font-semibold mb-2">Exports</h4>
             <ul className="space-y-1 text-gray-300">
-              <li>✔ Sri Lanka</li>
+              <li>✔ USA</li>
+              <li>✔ Canada</li>
+              <li>✔ Europe</li>
+              <li>✔ Argentina</li>
+              <li>✔ Brazil</li>
+              <li>✔ Peru</li>
+              <li>✔ Japan</li>
               <li>✔ Malaysia</li>
-              <li>✔ Bangladesh</li>
+              <li>✔ South Korea</li>
+              <li>✔ Australia</li>
+              <li>✔ New Zealand</li>
               <li>✔ UAE</li>
-              <li>✔ Singapore</li>
-              <li>✔ Russia</li>
-              <li>✔ Djibouti</li>
-              <li>✔ Benin</li>
-              <li>✔ Afghanistan</li>
+              <li>✔ Saudi Arabia</li>
+              <li>✔ Nigeria</li>
             </ul>
           </div>
           {/* Imports List */}
           <div data-aos="fade-up" data-aos-delay="400">
             <h4 className="text-xl font-semibold mb-2">Imports</h4>
             <ul className="space-y-1 text-gray-300">
-              <li>✔ Canada</li>
-              <li>✔ Australia</li>
-              <li>✔ Myanmar</li>
-              <li>✔ Tanzania</li>
+              <li>✔ China</li>
+              <li>✔ Vietnam</li>
             </ul>
           </div>
         </div>

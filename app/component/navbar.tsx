@@ -24,8 +24,13 @@ const Navbar = () => {
           : "bg-transparent text-white"
       }`}
     >
-      <h1 className="text-2xl font-bold">Paulfashion Export Co.</h1>
-      <span>Page is in mentainence...</span>
+      <h1
+        className="text-2xl font-bold"
+        onClick={() => (window.location.href = "/")}
+      >
+        Paulfashion Export Co.
+      </h1>
+      {/* <span>Page is in mentainence...</span> */}
       <button
         className="sm:hidden text-white text-2xl"
         onClick={() => setIsMenuOpen(!isMenuOpen)}

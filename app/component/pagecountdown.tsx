@@ -24,10 +24,7 @@ const PageCountDown = () => {
     }, 20);
 
     AOS.init({
-      duration: 1000, // Animation duration in milliseconds
-      easing: "ease-in-out", // Animation easing
-      once: false, // Whether animation should happen only once
-      mirror: true,
+      duration: 3000, // Animation duration in milliseconds
     });
 
     AOS.refresh();

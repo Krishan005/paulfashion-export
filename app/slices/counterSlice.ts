@@ -1,6 +1,7 @@
 import { createSlice, createAsyncThunk, PayloadAction } from '@reduxjs/toolkit';
+import axios from 'axios';
 
-const url = "https://jsonplaceholder.typicode.com/posts";
+const url = "/api/sendmsg";
 
 interface Post {
   id: number;
@@ -9,43 +10,47 @@ interface Post {
 }
 
 interface PostsState {
-  posts: Post[];
+  data: any[];
   loading: boolean;
   error: string | null;
 }
 
 const initialState: PostsState = {
-  posts: [],
+  data: [],
   loading: false,
   error: null,
 };
 
 // Async thunk to fetch posts
-export const fetchPosts = createAsyncThunk('posts/fetchPosts', async () => {
-  const response = await fetch(url);
-  if (!response.ok) {
-    throw new Error("Failed to fetch posts");
+export const addMsgs = createAsyncThunk(
+  'posts/addMsgs',
+  async (data: any, { rejectWithValue }) => {
+    try {
+      const response = await axios.post(url, data);
+      return response.data; // Axios already parses the JSON
+    } catch (error: any) {
+      return rejectWithValue(error.response?.data || "Failed to fetch posts");
+    }
   }
-  return await response.json();
-});
+);
 
 export const postsSlice = createSlice({
-  name: 'posts',
+  name: 'data',
   initialState,
   reducers: {},
   extraReducers: (builder) => {
     builder
-      .addCase(fetchPosts.pending, (state) => {
+      .addCase(addMsgs.pending, (state) => {
         state.loading = true;
         state.error = null;
       })
-      .addCase(fetchPosts.fulfilled, (state, action: PayloadAction<Post[]>) => {
-        state.posts = action.payload;
+      .addCase(addMsgs.fulfilled, (state, action: PayloadAction<Post[]>) => {
+        state.data = action.payload;
         state.loading = false;
       })
-      .addCase(fetchPosts.rejected, (state, action) => {
+      .addCase(addMsgs.rejected, (state, action) => {
         state.loading = false;
-        state.error = action.error.message || "Something went wrong";
+        state.error = action.payload as string || "Something went wrong";
       });
   },
 });
