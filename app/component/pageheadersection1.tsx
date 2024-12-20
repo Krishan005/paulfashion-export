@@ -26,11 +26,14 @@ const PageHeaderSection1 = () => {
 
       {/* Content Section */}
       <div className="relative z-10 flex flex-col items-center justify-center h-full text-center text-white px-4">
-        <h1 className="text-4xl md:text-5xl font-bold" data-aos="fade-up">
+        <h1
+          className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight"
+          data-aos="fade-up"
+        >
           Welcome to Paulfashion Export Co.
         </h1>
         <p
-          className="text-sm md:text-sm mt-4 max-w-2xl "
+          className="text-sm sm:text-base md:text-lg mt-4 max-w-2xl"
           data-aos="fade-up"
           data-aos-delay="200"
         >
@@ -43,20 +46,22 @@ const PageHeaderSection1 = () => {
         <div className="mt-6 flex flex-wrap justify-center gap-4">
           {/* Banner 1 */}
           <div
-            className="bg-black bg-opacity-50 p-6 rounded-lg shadow-lg max-w-xs"
+            className="bg-black bg-opacity-50 p-4 sm:p-6 rounded-lg shadow-lg max-w-[90%] sm:max-w-xs"
             data-aos="fade-right"
           >
-            <h2 className="text-xl font-semibold">Exclusive Deals</h2>
+            <h2 className="text-lg sm:text-xl font-semibold">
+              Exclusive Deals
+            </h2>
             <p className="mt-2 text-sm">
               Find the best offers on our products.
             </p>
           </div>
           {/* Banner 2 */}
           <div
-            className="bg-black bg-opacity-50 p-6 rounded-lg shadow-lg max-w-xs"
+            className="bg-black bg-opacity-50 p-4 sm:p-6 rounded-lg shadow-lg max-w-[90%] sm:max-w-xs"
             data-aos="fade-left"
           >
-            <h2 className="text-xl font-semibold">New Arrivals</h2>
+            <h2 className="text-lg sm:text-xl font-semibold">New Arrivals</h2>
             <p className="mt-2 text-sm">
               Check out our latest product collections.
             </p>
