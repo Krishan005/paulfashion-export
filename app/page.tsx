@@ -10,6 +10,9 @@ import PageExport from "./component/pageexport";
 import PageCountDown from "./component/pagecountdown";
 import ContactForm from "./component/contactForm";
 import WorldMap from "react-svg-worldmap";
+import { Carousel, CarouselResponsiveOption } from "primereact/carousel";
+
+import "primereact/resources/themes/saga-blue/theme.css"; // Theme
 
 const data: any = [
   { country: "cn", value: 1444216107 }, // China
@@ -67,6 +70,29 @@ const data: any = [
   { country: "ci", value: 26378274 }, // Ivory Coast
 
   // Add other countries if necessary
+];
+
+const responsiveOptions: CarouselResponsiveOption[] = [
+  {
+    breakpoint: "1400px",
+    numVisible: 2,
+    numScroll: 1,
+  },
+  {
+    breakpoint: "1199px",
+    numVisible: 3,
+    numScroll: 1,
+  },
+  {
+    breakpoint: "767px",
+    numVisible: 2,
+    numScroll: 1,
+  },
+  {
+    breakpoint: "575px",
+    numVisible: 1,
+    numScroll: 1,
+  },
 ];
 
 export default function Home() {
@@ -161,13 +187,26 @@ export default function Home() {
     return () => clearInterval(interval);
   }, [slides.length]);
 
+  const productTemplate: any = (product: any) => {
+    return (
+      <div className="border border-gray-300 rounded-md m-2 p-4 flex flex-col items-center text-center sm:flex-row sm:items-start sm:text-left sm:p-6">
+        <div>
+          <div className="mb-2 text-lg font-medium text-gray-900">
+            {product.title}
+          </div>
+          <div className="text-sm text-gray-600">{product.description}</div>
+        </div>
+      </div>
+    );
+  };
+
   return (
     <div className="grid grid-rows-[auto_1fr_auto] min-h-screen font-sans">
       {/* Header */}
       <Navbar />
 
       {/* Main Content */}
-      <main>
+      <main style={{ overflowX: "hidden" }}>
         {/* Hero Section */}
         <div className="relative h-screen w-full overflow-hidden">
           {/* Video Background */}
@@ -487,6 +526,25 @@ export default function Home() {
         </div>
 
         {/* Why Choose Us */}
+        <div
+          className="custom-carousel-container overflow-hidden"
+          aos-data="fade-up"
+        >
+          <h2 className="text-center text-2xl font-bold my-6">
+            Why You Choose Us ?
+          </h2>
+          <Carousel
+            value={slides}
+            numVisible={3}
+            numScroll={3}
+            responsiveOptions={responsiveOptions}
+            className="custom-carousel"
+            circular
+            autoplayInterval={3000}
+            itemTemplate={productTemplate}
+            orientation="vertical"
+          />
+        </div>
 
         {/* Contact Section */}
 
