@@ -11,6 +11,7 @@ import PageCountDown from "./component/pagecountdown";
 import ContactForm from "./component/contactForm";
 import WorldMap from "react-svg-worldmap";
 import { Carousel, CarouselResponsiveOption } from "primereact/carousel";
+import useWindowSize from "@rooks/use-window-size";
 
 import "primereact/resources/themes/saga-blue/theme.css"; // Theme
 
@@ -96,6 +97,9 @@ const responsiveOptions: CarouselResponsiveOption[] = [
 ];
 
 export default function Home() {
+  const { innerWidth, innerHeight, outerHeight, outerWidth } = useWindowSize();
+  var windowWidth: any = innerWidth || 0;
+
   const [activeIndex, setActiveIndex] = useState(0);
 
   const [count, setCount] = useState(0);
@@ -441,39 +445,38 @@ export default function Home() {
             data-aos="fade-left"
             data-aos-delay="600"
           >
-            <div className="h-full flex items-center justify-center">
+            <div className="h-full flex items-center justify-center bg-[#121212]">
               <div
-                className="bg-[#1e1e1e] text-white p-6 sm:p-8 rounded-md shadow-md w-full max-w-xl"
+                className="bg-[#121212] text-white p-6 sm:p-8 rounded-lg shadow-lg w-full max-w-xl"
                 style={{
-                  backgroundColor: "#1e1e1e", // Darker card background
-                  borderRadius: "8px",
-                  padding: "20px",
-                  boxShadow: "0 4px 6px rgba(253, 245, 245, 0.4)",
+                  backgroundColor: "#121212",
+                  borderRadius: "12px",
+                  padding: "24px",
+                  boxShadow: "0 6px 12px rgba(0, 0, 0, 0.8)",
                 }}
               >
                 <h2
                   style={{
                     textAlign: "center",
-                    marginBottom: "10px",
-                    color: "#f2f2f2",
+                    marginBottom: "16px",
+                    color: "#ffcc00", // Accent color for the title
                   }}
-                  className="text-lg sm:text-xl font-bold mb-4"
+                  className="text-xl sm:text-2xl font-bold"
                 >
                   Most Export Countries
                 </h2>
                 <WorldMap
-                  color="orange" // Map fill color (orange for dark theme)
-                  backgroundColor="#ffffff" // Map background
-                  title="Top 10 Populous Countries"
-                  value-suffix="people"
-                  size="md"
+                  color="#ffcc00" // Map fill color (golden for a striking effect)
+                  // Map background color matching the dark theme
+                  title="Top 10 Exporting Countries"
+                  value-suffix="exports"
+                  size={windowWidth > 768 ? "lg" : "md"}
                   data={data}
-                  frame={true}
                 />
               </div>
             </div>
-            <div className="absolute top-0 left-0 w-full h-2 bg-orange-500"></div>
-            <div className="absolute bottom-0 left-0 w-full h-2 bg-orange-500"></div>
+            <div className="absolute top-0 left-0 w-full h-2 bg-gradient-to-r from-yellow-500 to-orange-500"></div>
+            <div className="absolute bottom-0 left-0 w-full h-2 bg-gradient-to-r from-yellow-500 to-orange-500"></div>
           </div>
         </div>
 
