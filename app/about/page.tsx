@@ -49,7 +49,10 @@ const AboutUs = () => {
               className="w-full lg:w-1/3 rounded shadow-md h-auto lg:h-auto"
             />
 
-            <p className="text-gray-300 leading-relaxed" data-aos="fade-left">
+            <p
+              className="text-gray-300 leading-relaxed px-4"
+              data-aos="fade-left"
+            >
               Welcome to Paul Fashion, where style meets quality. Established in
               1995, we are a prominent garments export unit based in Kolkata,
               India, dedicated to providing exquisite fashion apparel to clients
