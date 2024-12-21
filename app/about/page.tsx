@@ -137,7 +137,7 @@ const AboutUs = () => {
             </div>
             <div className="text-center">
               <div className="w-24 h-24 bg-gray-300 rounded-full mx-auto"></div>
-              <h4 className="text-lg font-semibold mt-4">Mrs. Soumon</h4>
+              <h4 className="text-lg font-semibold mt-4">Mr. Soumon </h4>
               <p className="text-sm text-gray-600">
                 Operational Management Director
               </p>
