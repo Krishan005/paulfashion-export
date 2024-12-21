@@ -28,7 +28,7 @@ export default function ContactForm() {
   }, []);
 
   useEffect(() => {
-    if (data) {
+    if (data && formData.name !== "") {
       toast.current.show({
         severity: "success",
         summary: "Success",
