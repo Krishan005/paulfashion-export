@@ -1,19 +1,22 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 import { addMsgs } from "../slices/counterSlice";
 import { useAppDispatch, useAppSelector } from "../store/hook";
+import { Toast } from "primereact/toast";
 
 export default function ContactForm() {
   const dispatch = useAppDispatch();
+  const toast: any = useRef(null);
 
   const { data, loading, error } = useAppSelector((state) => state.counter);
 
   const [formData, setFormData] = useState({
     name: "",
     email: "",
+    phone: "",
     message: "",
   });
   const [status, setStatus] = useState("");
@@ -26,7 +29,11 @@ export default function ContactForm() {
 
   useEffect(() => {
     if (data) {
-      setStatus("Success");
+      toast.current.show({
+        severity: "success",
+        summary: "Success",
+        detail: "Message sent successfully",
+      });
     }
   }, [data]);
 
@@ -36,9 +43,21 @@ export default function ContactForm() {
 
   const handleSubmit = async (e: any) => {
     e.preventDefault();
-    setStatus("Sending...");
 
     try {
+      if (
+        formData.name === "" ||
+        formData.email === "" ||
+        formData.phone === "" ||
+        formData.message === ""
+      ) {
+        toast.current.show({
+          severity: "error",
+          summary: "Error",
+          detail: "Please fill all the fields",
+        });
+        return;
+      }
       dispatch(addMsgs(formData));
     } catch (error: any) {
       setStatus(`Error: ${error.message}`);
@@ -59,6 +78,7 @@ export default function ContactForm() {
       className="min-h-screen bg-black text-white flex items-center justify-center"
       id="contact"
     >
+      <Toast ref={toast} />
       <div className="container mx-auto px-6 grid grid-cols-1 lg:grid-cols-2 gap-12">
         {/* Form Section */}
         <div data-aos="fade-right">
@@ -98,6 +118,24 @@ export default function ContactForm() {
                 name="email"
                 placeholder="Your Email"
                 value={formData.email}
+                onChange={handleChange}
+                required
+                className="w-full px-4 py-2 border border-gray-600 bg-gray-900 text-white rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"
+              />
+            </div>
+            <div>
+              <label
+                htmlFor="phone"
+                className="block text-sm font-medium text-gray-300 mb-1"
+              >
+                Your Phone
+              </label>
+              <input
+                type="tel"
+                id="phone"
+                name="phone"
+                placeholder="Your Phone Number"
+                value={formData.phone}
                 onChange={handleChange}
                 required
                 className="w-full px-4 py-2 border border-gray-600 bg-gray-900 text-white rounded-md shadow-sm focus:ring-indigo-500 focus:border-indigo-500"

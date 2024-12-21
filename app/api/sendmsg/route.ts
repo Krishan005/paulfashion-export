@@ -1,30 +1,53 @@
 import { error } from "console";
 import { NextRequest, NextResponse } from "next/server";
 import nodemailer from "nodemailer";
-import fromData from "form-data";
-import mailGun from "mailgun.js"
+import { Resend } from 'resend';
 
-  const mailgun = new mailGun(fromData);
-  const mg = mailgun.client({username: 'api', key: "pubkey-2a65345274c85c544546c2a041bf7a81" });
+const resend = new Resend(process.env.SMS_KEY);
+
 
 export async function POST(req: NextRequest) {
-  const { name, email, message } = await req.json();
+  const { name, email, message, phone } = await req.json();
 
   try {
-     mg.messages.create('sandbox-123.mailgun.org', {
-  	from: "Excited User <mailgun@sandbox90df0ba9f3204465a319d668db989f56.mailgun.org>",
-  	to: ["test@example.com"],
-  	subject: "Hello",
-  	text: "Testing some Mailgun awesomeness!",
-  	html: "<h1>Testing some Mailgun awesomeness!</h1>"
-  })
-  .then(msg => console.log(msg)) // logs response data
-          .catch(err => console.log(err)); // logs any error
-      
-      
+
+    resend.emails.send({
+      from: 'info@paulfashion.in',
+      to: email,  
+      subject: 'Welcome to Paul Fashion',
+      html: `
+        <p>Hi ${name},</p>
+        <p>Thanks for reaching out to us. We will get back to you soon.</p>
+       
+
+        If want to connect directly with us, you can reach us at <a href="mailto:info@paulfashion.in">info@paulfashion.in</a>
+        or call us at <a href="tel:+91 7044221504">+91 7044221504</a>.
+
+         <p>Best regards,<br/>Paul Fashion</p>
+        `
+    });
+
+
+resend.emails.send({
+  from: 'info@paulfashion.in',
+  to: "info@paulfashion.in",
+  subject: 'Lead Message',
+  html: `
+    Company Detials:<br/>
+    Name: ${name}<br/>
+    Email: ${email}<br/>
+    Message: ${message}<br/>
+    Phone: ${phone}<br/>
+
+    Want to connect with your company directly
+
+  `
+});
+
+    
 
     return NextResponse.json(
-      { message: "Email sent successfully" },
+      { message: "Email sent successfully", data: email },
       { status: 200 }
     );
   } catch (error) {
