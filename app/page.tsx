@@ -121,7 +121,7 @@ export default function Home() {
 
   const slides = [
     {
-      title: "",
+      title: "Why Choose Paul Fashion?",
       description:
         "At Paul Fashion, we understand that selecting a garment supplier is a significant decision for your business. Here are several reasons why we stand out as your ideal partner in the fashion industry",
     },
@@ -166,7 +166,7 @@ export default function Home() {
         "We offer quality garments at competitive prices, providing excellent value without sacrificing quality. Our pricing structure is designed to help you achieve your business goals while staying within budget.",
     },
     {
-      title: "",
+      title: " 9. Exceptional Customer Service",
       description:
         "By choosing Paul Fashion, you are partnering with a company that values quality, sustainability, and exceptional service. Let us help you elevate your brand with stylish and high-quality garments that your customers will love.",
     },
