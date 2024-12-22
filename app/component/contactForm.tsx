@@ -179,7 +179,7 @@ export default function ContactForm() {
         {/* Map Section */}
         <div data-aos="fade-left" className="flex justify-center items-center">
           <iframe
-            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3153.835434509172!2d-122.4013584850958!3d37.79101177975653!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x80858064d3a8b7e1%3A0x3d35a1817ae5db45!2sGoogle%20San%20Francisco!5e0!3m2!1sen!2sus!4v1674583158416!5m2!1sen!2sus"
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3681.4368144084424!2d88.4582229!3d22.674777400000004!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39f89f0073d970dd%3A0xae3f34ff2b121039!2sINDIA%20POST-GANGANAGAR!5e0!3m2!1sen!2sin!4v1734865321413!5m2!1sen!2sin"
             width="100%"
             height="400"
             style={{ border: 0 }}
@@ -188,6 +188,14 @@ export default function ContactForm() {
             className="rounded-lg shadow-lg"
           ></iframe>
         </div>
+        {innerWidth > 600 ? (
+          ""
+        ) : (
+          <p className="mt-4 text-center text-gray-300">
+            MFF5+W79, Ganganagar, Doharia Shailesh Nagar, Chandigarh,
+            Madhyamgram, Kolkata, West Bengal 700132
+          </p>
+        )}
       </div>
     </div>
   );

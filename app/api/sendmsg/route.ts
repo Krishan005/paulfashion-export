@@ -13,7 +13,7 @@ export async function POST(req: NextRequest) {
 
     resend.emails.send({
       from: 'info@paulfashion.in',
-      to: email,  
+      to: email,
       subject: 'Welcome to Paul Fashion',
       html: `
         <p>Hi ${name},</p>
@@ -28,11 +28,11 @@ export async function POST(req: NextRequest) {
     });
 
 
-resend.emails.send({
-  from: 'info@paulfashion.in',
-  to: "info@paulfashion.in",
-  subject: 'Lead Message',
-  html: `
+    resend.emails.send({
+      from: 'info@paulfashion.in',
+      to: "paulfashion.export@gmail.com",
+      subject: 'Lead Message',
+      html: `
     Company Detials:<br/>
     Name: ${name}<br/>
     Email: ${email}<br/>
@@ -42,9 +42,9 @@ resend.emails.send({
     Want to connect with your company directly
 
   `
-});
+    });
 
-    
+
 
     return NextResponse.json(
       { message: "Email sent successfully", data: email },
