@@ -191,7 +191,10 @@ export default function ContactForm() {
         {innerWidth > 600 ? (
           ""
         ) : (
-          <p className="mt-4 text-center text-gray-300">
+          <p className="mt-4 text-center text-gray-300 mb-4">
+            <span className="font-semibold">Compnay:</span> PaulFashion Export
+            Co.
+            <span className="font-semibold">Address:</span>
             MFF5+W79, Ganganagar, Doharia Shailesh Nagar, Chandigarh,
             Madhyamgram, Kolkata, West Bengal 700132
           </p>
