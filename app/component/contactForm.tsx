@@ -6,8 +6,11 @@ import "aos/dist/aos.css";
 import { addMsgs } from "../slices/counterSlice";
 import { useAppDispatch, useAppSelector } from "../store/hook";
 import { Toast } from "primereact/toast";
+import useWindowSize from "@rooks/use-window-size";
 
 export default function ContactForm() {
+  const { innerWidth, innerHeight, outerHeight, outerWidth } = useWindowSize();
+  var windowWidth: any = innerWidth || 0;
   const dispatch = useAppDispatch();
   const toast: any = useRef(null);
 
@@ -188,7 +191,7 @@ export default function ContactForm() {
             className="rounded-lg shadow-lg"
           ></iframe>
         </div>
-        {innerWidth > 600 ? (
+        {windowWidth > 600 ? (
           ""
         ) : (
           <p className="mt-4 text-center text-gray-300 mb-4">
