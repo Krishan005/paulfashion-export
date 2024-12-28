@@ -266,6 +266,21 @@ export default function Home() {
           <h3 className="text-lg sm:text-xl font-semibold mt-4">
             {product.title}
           </h3>
+          <p className="text-gray-600">{product.description}</p>
+          <p className="text-gray-600">
+            {/* CREATE A BUTTON ENQUERY WITH WHATSAPP */}
+            <a
+              className="bg-orange-500 hover:bg-orange-600 text-white py-2 px-4 rounded-full mt-4 inline-block"
+              href={`https://wa.me/${product.phone}?text=${encodeURIComponent(
+                "Hello, I'm interested in your products. Please share more details about " +
+                  product.image
+              )}`}
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              Enquire Now
+            </a>
+          </p>
         </div>
       </div>
     );
