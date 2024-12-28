@@ -81,12 +81,12 @@ const responsiveOptions: CarouselResponsiveOption[] = [
   },
   {
     breakpoint: "1199px",
-    numVisible: 3,
+    numVisible: 2,
     numScroll: 1,
   },
   {
     breakpoint: "767px",
-    numVisible: 2,
+    numVisible: 1,
     numScroll: 1,
   },
   {
@@ -101,8 +101,26 @@ export default function Home() {
   var windowWidth: any = innerWidth || 0;
 
   const [activeIndex, setActiveIndex] = useState(0);
+  const [home, setHome] = useState<any>({});
 
   const [count, setCount] = useState(0);
+  const [dataSlides, setDataSlides] = useState<any>([]);
+  const [productSlides, setProductSlides] = useState<any>([
+    {
+      title: "Formal Wear",
+      description: "Formal Wear",
+      image:
+        "https://img.freepik.com/free-photo/full-length-portrait-handsome-successful-businessman_171337-18653.jpg?w=360",
+      phone: "7044221504",
+    },
+    {
+      title: "Casual Wear",
+      description: "Casual Wear",
+      image:
+        "https://img.freepik.com/free-photo/handsome-confident-young-curly-haired-man-drinking-coffee-standing-infront-isolated-white-wall_231208-1086.jpg?w=360",
+      phone: "7044221504",
+    },
+  ]);
 
   useEffect(() => {
     let start = 0; // Initial counter value
@@ -191,6 +209,37 @@ export default function Home() {
     return () => clearInterval(interval);
   }, [slides.length]);
 
+  //  setup fetch
+  useEffect(() => {
+    try {
+      const fetchProducts = async () => {
+        const response = await fetch("/api/home");
+        const data = await response.json();
+        // console.log(data);
+        setHome(data?.homes);
+        setCount(data?.homes?.HappyCustomerNumber || 5860);
+        var newSlides = data?.whyChooseUses?.data?.map((item: any) => ({
+          title: item.Heading,
+          description: item.Description,
+        }));
+
+        var newProductSlices = data?.products?.data?.map((item: any) => ({
+          title: item.Name,
+          description: item.Description,
+          image: item.ImageLink,
+          phone: item.EnquiryNumber,
+        }));
+
+        setProductSlides(newProductSlices);
+
+        setDataSlides(newSlides);
+      };
+
+      fetchProducts();
+    } catch (error) {
+      console.log(error);
+    }
+  }, []);
   const productTemplate: any = (product: any) => {
     return (
       <div className="border border-gray-300 rounded-md m-2 p-4 flex flex-col items-center text-center sm:flex-row sm:items-start sm:text-left sm:p-6">
@@ -199,6 +248,24 @@ export default function Home() {
             {product.title}
           </div>
           <div className="text-sm text-gray-600">{product.description}</div>
+        </div>
+      </div>
+    );
+  };
+
+  const ProductTemplateList: any = (product: any) => {
+    return (
+      <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 px-4 sm:px-8">
+        {/* Product Category 1 */}
+        <div className="text-center" data-aos="fade-up">
+          <img
+            src={product.image}
+            alt="Casual Wear"
+            className="mx-auto rounded-lg border-4 border-orange-500 p-2"
+          />
+          <h3 className="text-lg sm:text-xl font-semibold mt-4">
+            {product.title}
+          </h3>
         </div>
       </div>
     );
@@ -216,7 +283,11 @@ export default function Home() {
           {/* Video Background */}
           <video
             className="absolute top-0 left-0 w-full h-full object-cover z-0"
-            src="https://videos.pexels.com/video-files/10628542/10628542-hd_1920_1080_30fps.mp4"
+            src={
+              home?.TitleVideoLink
+                ? home?.TitleVideoLink
+                : "https://videos.pexels.com/video-files/10628542/10628542-hd_1920_1080_30fps.mp4"
+            }
             autoPlay
             loop
             muted
@@ -234,18 +305,20 @@ export default function Home() {
               className="text-3xl sm:text-4xl md:text-5xl font-bold leading-tight"
               data-aos="fade-up"
             >
-              Welcome to Paulfashion Export Co.
+              {home?.Title ? home?.Title : "Welcome to Paulfashion Export Co."}
             </h1>
             <p
               className="text-sm sm:text-base md:text-lg mt-4 max-w-2xl"
               data-aos="fade-up"
               data-aos-delay="200"
             >
-              Paul Fashion is a leading garments export unit specializing in
+              {home?.Subtitle
+                ? home?.Subtitle
+                : `Paul Fashion is a leading garments export unit specializing in
               knitted goods. In 1995, we have built a reputation for quality and
               reliability in the international market. Our commitment to
               excellence and customer satisfaction has allowed us to forge
-              long-lasting partnerships with clients around the globe.
+              long-lasting partnerships with clients around the globe.`}
             </p>
             <div className="mt-6 flex flex-wrap justify-center gap-4">
               {/* Banner 1 */}
@@ -254,10 +327,12 @@ export default function Home() {
                 data-aos="fade-right"
               >
                 <h2 className="text-lg sm:text-xl font-semibold">
-                  Exclusive Deals
+                  {home?.Heading1 ? home?.Heading1 : "Exclusive Deals"}
                 </h2>
                 <p className="mt-2 text-sm">
-                  Find the best offers on our products.
+                  {home?.Description1
+                    ? home?.Description1
+                    : "Find the best offers on our products."}
                 </p>
               </div>
               {/* Banner 2 */}
@@ -266,10 +341,12 @@ export default function Home() {
                 data-aos="fade-left"
               >
                 <h2 className="text-lg sm:text-xl font-semibold">
-                  New Arrivals
+                  {home?.Heading2 ? home?.Heading2 : "New Arrivals"}
                 </h2>
                 <p className="mt-2 text-sm">
-                  Check out our latest product collections.
+                  {home?.Description2
+                    ? home?.Description2
+                    : "Check out our latest product collections."}
                 </p>
               </div>
             </div>
@@ -288,7 +365,12 @@ export default function Home() {
           >
             <div className="relative border-4 border-orange-600">
               <img
-                src="https://img.freepik.com/free-photo/full-shot-women-shopping-together_23-2149241336.jpg?t=st=1734464350~exp=1734467950~hmac=9e623c574fd3877726526f450dc5747bd6e652395bc788a3a162f07feccc79ba&w=360" // Replace with your image path
+                src={
+                  home?.AboutImageLink
+                    ? home?.AboutImageLink
+                    : "https://img.freepik.com/free-photo/full-shot-women-shopping-together_23-2149241336.jpg?t=st=1734464350~exp=1734467950~hmac=9e623c574fd3877726526f450dc5747bd6e652395bc788a3a162f07feccc79ba&w=360"
+                }
+                // Replace with your image path
                 alt="Products"
                 className="w-full h-auto"
               />
@@ -303,13 +385,17 @@ export default function Home() {
           >
             <h3 className="text-xl font-bold text-orange-600">ABOUT</h3>
             <h2 className="text-3xl font-semibold mb-4 text-gray-800">
-              Paulfashion Export Co
+              {home?.AboutHeading ? home?.AboutHeading : " Paulfashion Export"}
             </h2>
             <p className="text-gray-600 mb-4 leading-relaxed">
-              Our Company is engaged into trading and marketing of garments
+              {home?.AboutDescription
+                ? home?.AboutDescription
+                : `
+                 Our Company is engaged into trading and marketing of garments
               product and clothing of men, women, and children and accessories.
               We are expert in the field of trade and marketing of garments
               product and clothing of men, women, and children and accessories.
+              `}
             </p>
             <button
               className="bg-orange-600 text-white py-2 px-4 rounded hover:bg-orange-700"
@@ -323,7 +409,15 @@ export default function Home() {
             <div className="mt-6 text-gray-700">
               Call to ask any question:{" "}
               <span className="text-orange-600 font-semibold">
-                <a href="tel:7044221504">+91-7044221504</a>
+                <a
+                  href={
+                    home?.AboutPhone
+                      ? "tel:" + home?.AboutPhone
+                      : "tel:7044221504"
+                  }
+                >
+                  +91-{home?.AboutPhone ? home?.AboutPhone : "7044221504"}
+                </a>
               </span>
             </div>
           </div>
@@ -338,51 +432,16 @@ export default function Home() {
           <h2 className="text-2xl sm:text-3xl font-bold mb-8 text-center">
             Our Products
           </h2>
-          <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 px-4 sm:px-8">
-            {/* Product Category 1 */}
-            <div className="text-center" data-aos="fade-up">
-              <img
-                src="https://img.freepik.com/free-photo/handsome-confident-young-curly-haired-man-drinking-coffee-standing-infront-isolated-white-wall_231208-1086.jpg?w=360"
-                alt="Casual Wear"
-                className="mx-auto rounded-lg border-4 border-orange-500 p-2"
-              />
-              <h3 className="text-lg sm:text-xl font-semibold mt-4">
-                Casual Wear
-              </h3>
-            </div>
-
-            {/* Product Category 2 */}
-            <div
-              className="text-center"
-              data-aos="fade-up"
-              data-aos-delay="200"
-            >
-              <img
-                src="https://img.freepik.com/free-photo/full-length-portrait-handsome-successful-businessman_171337-18653.jpg?w=360"
-                alt="Formal Wear"
-                className="mx-auto rounded-lg border-4 border-orange-500 p-2"
-              />
-              <h3 className="text-lg sm:text-xl font-semibold mt-4">
-                Formal Wear
-              </h3>
-            </div>
-
-            {/* Product Category 3 */}
-            <div
-              className="text-center"
-              data-aos="fade-up"
-              data-aos-delay="400"
-            >
-              <img
-                src="https://img.freepik.com/premium-photo/handsome-athletic-man-walking-street_652076-603.jpg?w=360"
-                alt="Sports Wear"
-                className="mx-auto rounded-lg border-4 border-orange-500 p-2"
-              />
-              <h3 className="text-lg sm:text-xl font-semibold mt-4">
-                Sports Wear
-              </h3>
-            </div>
-          </div>
+          <Carousel
+            value={productSlides}
+            numVisible={3}
+            numScroll={3}
+            responsiveOptions={responsiveOptions}
+            className="custom-carousel"
+            circular
+            autoplayInterval={3000}
+            itemTemplate={ProductTemplateList}
+          />
         </section>
 
         {/* Export Section */}
@@ -495,7 +554,11 @@ export default function Home() {
             }}
           >
             <source
-              src="https://videos.pexels.com/video-files/6120425/6120425-uhd_2732_1440_25fps.mp4"
+              src={
+                home?.HappyCustomerVideoLink
+                  ? home?.HappyCustomerVideoLink
+                  : "https://videos.pexels.com/video-files/6120425/6120425-uhd_2732_1440_25fps.mp4"
+              }
               type="video/mp4"
             />
             Your browser does not support the video tag.
@@ -507,7 +570,9 @@ export default function Home() {
               className="text-4xl font-bold mb-4 text-orange-500"
               data-aos="fade-up" // AOS animation
             >
-              Our Happy Customers
+              {home?.HappyCustomerTitle
+                ? home?.HappyCustomerTitle
+                : "Our Happy Customers"}
             </h2>
             <div
               className="text-6xl font-extrabold animate-pulse"
@@ -520,7 +585,9 @@ export default function Home() {
               className="text-lg mt-4 text-gray-400"
               data-aos="fade-down" // AOS animation
             >
-              Thank you for being a part of our journey!
+              {home?.HappyCustomerSubTitle
+                ? home?.HappyCustomerSubTitle
+                : " Thank you for being a part of our journey!"}
             </p>
           </div>
 
@@ -537,7 +604,7 @@ export default function Home() {
             Why You Choose Us ?
           </h2>
           <Carousel
-            value={slides}
+            value={dataSlides.length > 0 ? dataSlides : slides}
             numVisible={3}
             numScroll={3}
             responsiveOptions={responsiveOptions}

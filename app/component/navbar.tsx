@@ -6,6 +6,7 @@ import { FaBars, FaTimes } from "react-icons/fa";
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+  const [logoLink, setLogoLink] = useState("");
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,6 +17,29 @@ const Navbar = () => {
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
 
+  useEffect(() => {
+    const logoFetch = async () => {
+      try {
+        const response = await fetch(
+          `${process.env.NEXT_PUBLIC_BASE_URL}/company-logos`,
+          {
+            headers: {
+              "Content-Type": "application/json",
+              Authorization: `Bearer ${process.env.NEXT_PUBLIC_TOKEN}`,
+            },
+          }
+        );
+        const data = await response.json();
+        // console.log(data?.data[0].Logo);
+        setLogoLink(data?.data[0]?.Logo);
+      } catch (error) {
+        console.error("Error fetching logo:", error);
+      }
+    };
+
+    logoFetch();
+  }, []);
+
   return (
     <div
       className={`fixed top-0 left-0 w-full py-4 px-8 flex justify-between items-center transition-all duration-300 z-50 ${
@@ -24,12 +48,19 @@ const Navbar = () => {
           : "bg-transparent text-white"
       }`}
     >
-      <h1
-        className="text-2xl font-bold"
-        onClick={() => (window.location.href = "/")}
-      >
-        Paulfashion Export Co.
-      </h1>
+      {logoLink ? (
+        <>
+          <img src={logoLink} alt="Logo" className="w-16 h-16" />
+        </>
+      ) : (
+        <h1
+          className="text-2xl font-bold"
+          onClick={() => (window.location.href = "/")}
+        >
+          Paulfashion
+        </h1>
+      )}
+
       {/* <span>Page is in mentainence...</span> */}
       <button
         className="sm:hidden text-white text-2xl"
