@@ -218,7 +218,11 @@ export default function Home() {
         const data = await response.json();
         // console.log(data);
         setHome(data?.homes);
-        setCount(data?.homes?.HappyCustomerNumber || 5860);
+        setCount(
+          data?.homes?.HappyCustomerNumber
+            ? data?.homes?.HappyCustomerNumber
+            : 5860
+        );
         var newSlides = data?.whyChooseUses?.data?.map((item: any) => ({
           title: item.Heading,
           description: item.Description,
