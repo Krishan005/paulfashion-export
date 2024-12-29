@@ -76,7 +76,7 @@ const data: any = [
 const responsiveOptions: CarouselResponsiveOption[] = [
   {
     breakpoint: "1400px",
-    numVisible: 2,
+    numVisible: 3,
     numScroll: 1,
   },
   {
@@ -259,13 +259,14 @@ export default function Home() {
 
   const ProductTemplateList: any = (product: any) => {
     return (
-      <div className="grid gap-8 grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 px-4 sm:px-8">
+      <div className="">
         {/* Product Category 1 */}
         <div className="text-center" data-aos="fade-up">
           <img
             src={product.image}
             alt="Casual Wear"
             className="mx-auto rounded-lg border-4 border-orange-500 p-2"
+            style={{ width: "100%", height: "100%" }}
           />
           <h3 className="text-lg sm:text-xl font-semibold mt-4">
             {product.title}
