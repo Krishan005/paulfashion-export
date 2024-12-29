@@ -239,7 +239,7 @@ export default function Home() {
     } catch (error) {
       console.log(error);
     }
-  }, []);
+  }, [home]);
   const productTemplate: any = (product: any) => {
     return (
       <div className="border border-gray-300 rounded-md m-2 p-4 flex flex-col items-center text-center sm:flex-row sm:items-start sm:text-left sm:p-6">
