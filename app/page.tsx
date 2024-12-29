@@ -234,7 +234,9 @@ export default function Home() {
         setProductSlides(newProductSlices);
 
         setDataSlides(newSlides);
-        setIsLoading(true);
+        setTimeout(() => {
+          setIsLoading(true);
+        }, 1000);
       };
 
       fetchProducts();
