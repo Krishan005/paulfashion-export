@@ -568,6 +568,11 @@ export default function Home() {
           {/* Background Video */}
           <video
             autoPlay
+            src={
+              home?.HappyCustomerVideoLink
+                ? home?.HappyCustomerVideoLink
+                : "https://videos.pexels.com/video-files/6120425/6120425-uhd_2732_1440_25fps.mp4"
+            }
             loop
             muted
             playsInline
@@ -577,14 +582,6 @@ export default function Home() {
               objectFit: "cover", // Ensure the video scales properly
             }}
           >
-            <source
-              src={
-                home?.HappyCustomerVideoLink
-                  ? home?.HappyCustomerVideoLink
-                  : "https://videos.pexels.com/video-files/6120425/6120425-uhd_2732_1440_25fps.mp4"
-              }
-              type="video/mp4"
-            />
             Your browser does not support the video tag.
           </video>
 
