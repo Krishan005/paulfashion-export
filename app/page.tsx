@@ -102,6 +102,7 @@ export default function Home() {
 
   const [activeIndex, setActiveIndex] = useState(0);
   const [home, setHome] = useState<any>({});
+  const [isLoading, setIsLoading] = useState<any>(false);
 
   const [count, setCount] = useState(0);
   const [dataSlides, setDataSlides] = useState<any>([]);
@@ -233,13 +234,14 @@ export default function Home() {
         setProductSlides(newProductSlices);
 
         setDataSlides(newSlides);
+        setIsLoading(true);
       };
 
       fetchProducts();
     } catch (error) {
       console.log(error);
     }
-  }, [home]);
+  }, [isLoading]);
   const productTemplate: any = (product: any) => {
     return (
       <div className="border border-gray-300 rounded-md m-2 p-4 flex flex-col items-center text-center sm:flex-row sm:items-start sm:text-left sm:p-6">
